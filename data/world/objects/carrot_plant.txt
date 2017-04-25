@@ -1,0 +1,4 @@
+Click:	0 -1
+Growth step:	2000
+Phases:	4
+Yield	carrot 4

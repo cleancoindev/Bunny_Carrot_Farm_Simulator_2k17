@@ -1,0 +1,51 @@
+String[] data = loadStrings( sketchPath() + "\\data\\world\\objects\\" + l[i] );
+         for( int d = 0; d < data.length; ++d ){
+           String[] sub_data = split( data[d], '\t' );
+           if( sub_data.length == 2 ){
+             
+             float[] coinc = new float[parameters.length];
+             for( int j = 0; j < parameters.length; ++j ){
+               coinc[j] = coincidence( sub_data[0], parameters[j] );
+             }
+             int theOne = 0;
+             for( int j = 1; j < parameters.length; ++j ){
+               if( coinc[j] > coinc[theOne] ) theOne = j;
+             }
+             if( coinc[theOne] > typo_threshhold ){
+               switch( theOne ){
+                 case 0:
+                   map = int( sub_data[1] );
+                   break;
+                 case 1:
+                   String[] line = split( sub_data[1], ' ' );
+                   if( line.length == 2 ){
+                     println( line[0], int(line[0]) );
+                     x = int( line[0] );
+                     y = int( line[1] );
+                   }
+                   break;
+               }
+             }
+           }
+           else println( "ERROR: " + data[d] + ": probably no tab." );
+         }
+
+
+
+
+
+int match = -1;
+       for( int j = names.size()-1; j >= 0; --j ){
+         if( names.get(j).equals( sl[0] ) ){
+           match = j;
+           break;
+         }
+       }
+       if( match >= 0 && map >= 0){
+         println( map, match, x, y );
+         world[ map ].objects.add( new Object( names.get(match), sprites.get(match), x * L , y * L ) );
+         map = -1;
+       }
+       else{
+         
+       }

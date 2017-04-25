@@ -1,0 +1,3 @@
+Consumable:	true
+Place:	farm carrot_plant
+Consume:	10
